@@ -1,2 +1,18 @@
-<p>Woo!</p>
+<!--TODO: hcard-->
+<div id="gs-profile-view-site-home-summary">
+  <div id="gs-profile-view-site-home-summary-image"
+    class="userimage photo">
+    <img src="#" tal:attributes="src view/userInfo/user/get_image"/>
+  </div><!--gs-profile-view-site-home-summary-image-->
+  <h2><span class="salutation" tal:content="view/salutation">Welcome</span>,
+    <span class="fn" tal:content="user/fn">Fellow Traveller</span></h2>
+  <ul id="gs-profile-view-site-home-summary-groups" class="inline-list"
+    tal:condition="view/memberGroups">
+    <li><bold class="label">Your Groups:</bold></li>
+    <tal:block repeat="group view/memberGroups">
+      <li><a class="group" href="#" tal:attributes="href group/url"
+            tal:content="group/name">Group</a></li> 
+    </tal:block>
+  </ul><!--groups-->
+</div><!--gs-profile-view-site-home-summary-->
 

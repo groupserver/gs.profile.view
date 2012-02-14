@@ -32,6 +32,7 @@ setup(name='gs.profile.view',
     zip_safe=True,
     install_requires=[
         'setuptools',
+        'gs.site.home',
         'gs.profile.base',
         # -*- Extra requirements: -*-
     ],

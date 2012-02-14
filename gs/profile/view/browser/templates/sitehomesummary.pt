@@ -1,18 +1,21 @@
-<!--TODO: hcard-->
-<div id="gs-profile-view-site-home-summary">
+<div id="gs-profile-view-site-home-summary" class="vcard">
   <div id="gs-profile-view-site-home-summary-image"
     class="userimage photo">
-    <img src="#" tal:attributes="src view/userInfo/user/get_image"/>
+    <a href="/p" class="url" 
+      tal:attributes="href view/userInfo/url"><img src="#" 
+                tal:attributes="src view/userInfo/user/get_image"/></a>
   </div><!--gs-profile-view-site-home-summary-image-->
-  <h2><span class="salutation" tal:content="view/salutation">Welcome</span>,
-    <span class="fn" tal:content="user/fn">Fellow Traveller</span></h2>
+  <p><strong class="salutation" 
+      tal:content="view/salutation">Welcome</strong>,
+    <span class="fn val" tal:content="user/fn">Fellow Traveller</span></p>
   <ul id="gs-profile-view-site-home-summary-groups" class="inline-list"
     tal:condition="view/memberGroups">
-    <li><bold class="label">Your Groups:</bold></li>
+    <li><strong class="label">Your Groups:</strong></li>
     <tal:block repeat="group view/memberGroups">
       <li><a class="group" href="#" tal:attributes="href group/url"
             tal:content="group/name">Group</a></li> 
     </tal:block>
   </ul><!--groups-->
+  <div class="noFloat">&#160;</div>
 </div><!--gs-profile-view-site-home-summary-->
 

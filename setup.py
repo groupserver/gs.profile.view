@@ -34,6 +34,7 @@ setup(name='gs.profile.view',
         'setuptools',
         'gs.site.home',
         'gs.profile.base',
+        'gs.viewlet',
         # -*- Extra requirements: -*-
     ],
     entry_points="""

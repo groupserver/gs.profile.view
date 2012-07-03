@@ -12,7 +12,7 @@
     tal:condition="view/memberGroups">
     <li><strong class="label">Your Groups:</strong></li>
     <tal:block repeat="group view/memberGroups">
-      <li><a class="group" href="#" tal:attributes="href group/url"
+      <li><a class="group" href="#" tal:attributes="href group/relativeURL"
             tal:content="group/name">Group</a></li> 
     </tal:block>
   </ul><!--groups-->

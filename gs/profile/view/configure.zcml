@@ -4,13 +4,5 @@
   xmlns:five="http://namespaces.zope.org/five"
   i18n_domain="groupserver">
   
-  <browser:viewlet name="gs-profile-view-site-home-summary"
-    manager="gs.site.home.interfaces.ISiteHomeLeftColumn"
-    template="browser/templates/sitehomesummary.pt"
-    class=".sitehomesummary.SiteHomeSummaryViewlet"
-    permission="zope2.View"
-    weight="5"
-    title="About" />
-  
 </configure>
 

@@ -1,43 +1,30 @@
 # -*- coding: utf-8 -*-
 from zope.component import createObject
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
-import zope.interface
-import zope.component
-import zope.publisher.interfaces
-import zope.viewlet.interfaces
-import zope.contentprovider.interfaces
 from Products.CustomUserFolder.interfaces import IGSUserInfo
 from interfaces import *
 from zope.app.publisher.browser.menu import getMenu
 from AccessControl.security import newInteraction
+from gs.viewlet import SiteContentProvider
 
 import logging
 log = logging.getLogger('GSProfileContextMenuContentProvider')
 
 
-class GSProfileContextMenuContentProvider(object):
+class GSProfileContextMenuContentProvider(SiteContentProvider):
     """GroupServer context-menu for the user profile area.
     """
 
-    zope.interface.implements(IGSProfileContextMenuContentProvider)
-    zope.component.adapts(zope.interface.Interface,
-        zope.publisher.interfaces.browser.IDefaultBrowserLayer,
-        zope.interface.Interface)
-
     def __init__(self, context, request, view):
-        self.__parent__ = self.view = view
+        super(GSProfileContextMenuContentProvider, self).__init__(context,
+                                                                request, view)
         self.__updated = False
-
-        self.context = context
-        self.request = request
 
         newInteraction()
 
     def update(self):
         self.__updated = True
 
-        self.siteInfo = createObject('groupserver.SiteInfo',
-          self.context)
         self.groupsInfo = createObject('groupserver.GroupsInfo',
           self.context)
         self.userInfo = IGSUserInfo(self.context)
@@ -65,7 +52,3 @@ class GSProfileContextMenuContentProvider(object):
             retval = 'not-current'
         assert retval
         return retval
-
-zope.component.provideAdapter(GSProfileContextMenuContentProvider,
-    provides=zope.contentprovider.interfaces.IContentProvider,
-    name="groupserver.ProfileContextMenu")

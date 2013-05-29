@@ -10,20 +10,6 @@
     class=".page.GSProfileView"
     template="browser/templates/page.pt"
     permission="zope2.View" />
-
-  <interface 
-    interface=".interfaces.IProfileMenu"
-    type="zope.contentprovider.interfaces.ITALNamespaceData"/>
-  <class class=".menu.GSProfileContextMenuContentProvider">
-    <implements interface=".interfaces.IProfileMenu"/>
-  </class>
-  <adapter
-    name="groupserver.ProfileContextMenu"
-    provides="zope.contentprovider.interfaces.IContentProvider"
-    for="Products.CustomUserFolder.interfaces.ICustomUser
-         zope.publisher.interfaces.browser.IDefaultBrowserLayer
-         zope.interface.Interface"
-    factory=".menu.GSProfileContextMenuContentProvider" />
   
   <browser:resource
     name="gs-profile-view-page-search-20130529.js"

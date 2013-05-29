@@ -27,7 +27,7 @@ setup(name='gs.profile.view',
     url='http://groupserver.org/',
     license='other',
     packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['gs', 'gs.profile',],
+    namespace_packages=['gs', 'gs.profile', ],
     include_package_data=True,
     zip_safe=True,
     install_requires=[
@@ -40,4 +40,3 @@ setup(name='gs.profile.view',
     entry_points="""
     # -*- Entry points: -*-
     """,)
-

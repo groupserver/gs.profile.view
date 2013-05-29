@@ -1,33 +1,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  metal:use-macro="context/@@groupserver_layout/page">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/@@groupserver_menu_layout/page">
   <head>
     <title metal:fill-slot="title">Profile of 
       <span tal:replace="view/userInfo/name">A. Person</span>:
-      <span tal:replace="view/siteInfo/get_name">A Site</span>
+      <span tal:replace="view/siteInfo/name">A Site</span>
     </title>
     <tal:block metal:fill-slot="metadata"
       tal:define="uid python:view.userInfo.id; fn python:view.userInfo.name">
       <link rel="alternate" type="application/atom+xml"
         href="#" title="Posts"
         tal:attributes="href string:/s/search.atom?a=${uid}&amp;t=0&amp;p=1;
-          title string:All posts by ${fn}: ${view/siteInfo/get_name}"/>
+          title string:All posts by ${fn}: ${view/siteInfo/name}"/>
       <link rel="alternate" type="application/atom+xml"
         href="#" title="Files"
         tal:attributes="href string:/s/search.atom?a=${uid}&amp;t=0&amp;f=1;
-          title string:All files by ${fn}: ${view/siteInfo/get_name}"/>
+          title string:All files by ${fn}: ${view/siteInfo/name}"/>
+      <link rel="up"
+        href="/" title="Home"
+        tal:attributes="title string:${view/siteInfo/name} Home"/>
     </tal:block>
   </head>
   <body>
     <tal:block metal:fill-slot="contextnavigation">
-      <span 
-        tal:replace="structure provider:groupserver.ProfileContextMenu">
+      <span tal:replace="structure provider:groupserver.ProfileContextMenu">
         Context Menu
       </span>
     </tal:block>
+    <ul metal:fill-slot="breadcrumb">
+      <li>
+        <a href="/" class="icon-alone">
+          <span aria-hidden="true" data-icon="&#x2302;"></span>
+          <span class="screen-reader-text">Site home page</span>
+        </a>
+      </li>
+      <li>
+        <span class="fn" 
+              tal:content="view/userInfo/name">This person</span>
+      </li>
+    </ul>
     <div metal:fill-slot="body" class="userProfile" id="gs-profile-view"
-      tal:define="authenticated python:user.has_role('Authenticated')">
+         tal:define="authenticated python:user.has_role('Authenticated')">
       <div class="vcard"
            tal:attributes="data-userid view/userInfo/id">
         <h1>Profile of 

@@ -15,5 +15,10 @@
     interface=".interfaces.IGSViewProfileJavaScriptContentProvider"
     type="zope.contentprovider.interfaces.ITALNamespaceData"/-->
   
+  <browser:resource
+    name="gs-profile-view-page-search-20130529.js"
+    file="browser/javascript/search.js"
+    permission="zope2.Public"/>
+
 </configure>
 

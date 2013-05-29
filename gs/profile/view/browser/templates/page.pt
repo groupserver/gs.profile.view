@@ -28,7 +28,8 @@
     </tal:block>
     <div metal:fill-slot="body" class="userProfile" id="gs-profile-view"
       tal:define="authenticated python:user.has_role('Authenticated')">
-      <div class="vcard">
+      <div class="vcard"
+           tal:attributes="data-userid view/userInfo/id">
         <h1>Profile of 
           <span class="fn" 
             tal:content="view/userInfo/name">A. Person</span>
@@ -111,42 +112,25 @@
         </div><!--groups-->
       </div><!--membership-->
       <div class="noFloat">&#160;</div>
-      <div class="cols"
-        tal:define="uid python:view.userInfo.id; fn python:view.userInfo.name">
-        <div id="files" class="rightColumn">
-          <h2>Latest Files</h2>
-          <div id="latestFiles"><img src="/++resource++anim/wait.gif"/>
-            Loading the latest files by
-            <span class="fn" tal:content="fn"/>
-          </div>
-          <p>
-            <a title="More files by A. Person"
-              href="#"
-              tal:attributes="href string:/s/?p=0&amp;t=0&amp;f=1&amp;a=${uid};
-                title string:More files by ${fn};">More&#8230;</a>
-          </p>
-        </div><!--Files-->
-        <div id="posts" class="leftColumn">
-          <h2>Latest Posts</h2>
-          <div id="latestPosts"><img src="/++resource++anim/wait.gif"/>
-            Loading the latest posts by
-            <span class="fn" tal:content="fn"/>
-          </div>
-          <p>
-            <a title="More posts by A. Person"
-              href="#"
-              tal:attributes="href string:/s/?p=1&amp;t=0&amp;a=${uid};
-                title string:More posts by ${fn};">More&#8230;</a>
-          </p>
-        </div><!--Posts-->
-      </div><!--cols-->
+      <div id="posts" 
+           tal:define="uid python:view.userInfo.id; 
+                       fn python:view.userInfo.name">
+        <h2>Latest Posts</h2>
+        <div id="latestPosts"><img src="/++resource++anim/wait.gif"/>
+        Loading the latest posts by
+        <span class="fn" tal:content="fn"/>
+        </div>
+        <p>
+          <a title="More posts by A. Person"
+             href="#"
+             tal:attributes="href string:/s/?p=1&amp;t=0&amp;a=${uid};
+                             title string:More posts by ${fn};">More&#8230;</a>
+        </p>
+      </div><!--Posts-->
     </div><!--profile-->
-    <tal:block metal:fill-slot="javascript">
-      <!--script type="text/javascript" 
-        tal:content="provider:groupserver.ViewProfileJavaScript">
-          alert("I have not been replaced!");
-      </script-->
-    </tal:block>
+    <script metal:fill-slot="javascript" type="text/javascript" 
+            src="/++resource++gs-profile-view-page-search-20130529.js"
+            defer="true">&#160;</script>
   </body>
 </html>
 

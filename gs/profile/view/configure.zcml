@@ -10,10 +10,6 @@
     class=".page.GSProfileView"
     template="browser/templates/page.pt"
     permission="zope2.View" />
-
-  <!--interface 
-    interface=".interfaces.IGSViewProfileJavaScriptContentProvider"
-    type="zope.contentprovider.interfaces.ITALNamespaceData"/-->
   
   <browser:resource
     name="gs-profile-view-page-search-20130529.js"

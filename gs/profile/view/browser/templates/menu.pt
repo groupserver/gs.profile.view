@@ -1,0 +1,20 @@
+<div id="gs-profile-view-menu" tal:define="view options/view;">
+  <div id="contextnav" class="xhtml2-nl">
+    <p class="label">
+      <a href="#" title="Profile of A. User" class="fn"
+        tal:attributes="title string:Profile of ${view/userInfo/name};
+                        href view/userInfo/url;">Profile</a>
+    </p>
+    <ul>
+      <tal:block repeat="page view/pages">
+        <li>
+          <a href="#" 
+             tal:attributes="href string:${view/userInfo/url}/${page/action}; 
+                             class python:view.page_class(page);
+                             title page/description"
+             tal:content="page/title">Page Name</a>
+        </li>
+      </tal:block>
+    </ul>
+  </div><!--contextnav-->
+</div><!--gs-profile-view-menu-->

@@ -142,10 +142,10 @@
       </div><!--cols-->
     </div><!--profile-->
     <tal:block metal:fill-slot="javascript">
-      <script type="text/javascript" 
+      <!--script type="text/javascript" 
         tal:content="provider:groupserver.ViewProfileJavaScript">
           alert("I have not been replaced!");
-      </script>
+      </script-->
     </tal:block>
   </body>
 </html>

@@ -12,10 +12,10 @@
     permission="zope2.View" />
 
   <interface 
-    interface=".interfaces.IGSProfileContextMenuContentProvider"
+    interface=".interfaces.IProfileMenu"
     type="zope.contentprovider.interfaces.ITALNamespaceData"/>
   <class class=".menu.GSProfileContextMenuContentProvider">
-    <interface implements=".interfaces.IGSProfileContextMenuContentProvider"/>
+    <implements interface=".interfaces.IProfileMenu"/>
   </class>
   <adapter
     name="groupserver.ProfileContextMenu"

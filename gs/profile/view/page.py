@@ -6,9 +6,8 @@ from zope.interface.interface import InterfaceClass
 from zope.schema.interfaces import IVocabularyFactory
 from Products.XWFCore import XWFUtils
 from Products.XWFCore.odict import ODict
-from Products.CustomUserFolder.interfaces import IGSUserInfo
+from gs.profile.base import ProfilePage
 from gs.profile.email.base.emailuser import EmailUser
-from gs.content.base import SitePage
 from Products.GSProfile.interfaces import *
 from utils import groupInfoSorter
 
@@ -22,7 +21,7 @@ log = logging.getLogger('GSProfile')
 # simplifying the code *massively*.
 
 
-class GSProfileView(SitePage):
+class GSProfileView(ProfilePage):
     '''View object for standard GroupServer User-Profile Instances'''
     def __init__(self, user, request):
         super(GSProfileView, self).__init__(user, request)
@@ -32,11 +31,6 @@ class GSProfileView(SitePage):
     @Lazy
     def groupsInfo(self):
         retval = createObject('groupserver.GroupsInfo', self.user)
-        return retval
-
-    @Lazy
-    def userInfo(self):
-        retval = IGSUserInfo(self.user)
         return retval
 
     @Lazy

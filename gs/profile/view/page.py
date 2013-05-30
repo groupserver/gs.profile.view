@@ -35,7 +35,7 @@ class GSProfileView(ProfilePage):
 
     @Lazy
     def emailUser(self):
-        retval = EmailUser(context, self.userInfo)
+        retval = EmailUser(self.context, self.userInfo)
         return retval
 
     def __get_global_config(self):

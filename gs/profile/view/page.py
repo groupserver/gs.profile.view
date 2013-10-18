@@ -12,6 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from __future__ import absolute_import
 import zope.app.apidoc.interface
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject, getUtility
@@ -22,7 +23,7 @@ from Products.XWFCore.odict import ODict
 from gs.profile.base import ProfilePage
 from gs.profile.email.base.emailuser import EmailUser
 from Products.GSProfile.interfaces import *
-from utils import groupInfoSorter
+from .utils import groupInfoSorter
 
 import logging
 log = logging.getLogger('GSProfile')

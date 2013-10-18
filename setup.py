@@ -42,15 +42,20 @@ setup(name='gs.profile.view',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['gs', 'gs.profile', ],
     include_package_data=True,
-    zip_safe=True,
+    zip_safe=False,
     install_requires=[
         'setuptools',
         'zope.app.apidoc',
+        'zope.browserpage',  # For the <browser:page config.
+        'zope.browserresource',  # For the <browser:resourceX config.
         'zope.cachedescriptors',
         'zope.component',
         'zope.interface',
         'zope.schema',
+        'zope.tal',  # For tal: and metal: attributes
+        'zope.tales',  # For what goes in the tal: and metal: attributes
         'gs.site.home',
+        'gs.content.layout',
         'gs.profile.base',
         'gs.profile.email.base',
         'gs.viewlet',

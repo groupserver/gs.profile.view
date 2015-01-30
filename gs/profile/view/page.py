@@ -13,20 +13,19 @@
 #
 ############################################################################
 from __future__ import absolute_import, unicode_literals
+from collections import OrderedDict
+from logging import getLogger
+log = getLogger('gs.profile.view')
 import zope.app.apidoc.interface
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject, getUtility
 from zope.interface.interface import InterfaceClass
 from zope.schema.interfaces import IVocabularyFactory
-from Products.XWFCore import XWFUtils
-from Products.XWFCore.odict import ODict
+from gs.core import comma_comma_and
 from gs.profile.base import ProfilePage
 from gs.profile.email.base.emailuser import EmailUser
 from Products.GSProfile.interfaces import *  # Sad, but true  # lint:ok
 from .utils import groupInfoSorter
-
-import logging
-log = logging.getLogger('gs.profile.view')
 
 # TODO: The code for displaying profile properties should be moved from
 # the GSProfileView class to a viewlet. The viewlet class would contain
@@ -61,7 +60,7 @@ class GSProfileView(ProfilePage):
 
     @Lazy
     def props(self):
-        retval = ODict()
+        retval = OrderedDict()
         config = self.__get_global_config()
         hiddenFields = getattr(config, 'hiddenFields', [])
 
@@ -121,7 +120,7 @@ class GSProfileView(ProfilePage):
             # Named vocabularies will cause a mare, like above.
             vocab = p.value_type.vocabulary
             s = [vocab.getTerm(v).title for v in r]
-            retval = XWFUtils.comma_comma_and(s)
+            retval = comma_comma_and(s)
         else:
             retval = r
 

@@ -61,6 +61,7 @@ setup(
         'zope.schema',
         'zope.tal',  # For tal: and metal: attributes
         'zope.tales',  # For what goes in the tal: and metal: attributes
+        'gs.core',
         'gs.site.home',
         'gs.content.layout',
         'gs.profile.base',
@@ -68,7 +69,6 @@ setup(
         'gs.viewlet',
         'Products.GSGroup',
         'Products.GSProfile',
-        'Products.XWFCore'
     ],
     entry_points="""
     # -*- Entry points: -*-

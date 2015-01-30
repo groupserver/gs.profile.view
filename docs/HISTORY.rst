@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 * Pointing everything at GitHub_
+* :pep:`8` and Unicode update
 
 .. _GitHub: https://github.com/groupserver/gs.profile.view
 

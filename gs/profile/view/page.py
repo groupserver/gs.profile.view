@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
-# Copyright © 2013 OnlineGroups.net and Contributors.
+# Copyright © 2013, 2015 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -11,8 +11,8 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
-from __future__ import absolute_import
+############################################################################
+from __future__ import absolute_import, unicode_literals
 import zope.app.apidoc.interface
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject, getUtility
@@ -22,11 +22,11 @@ from Products.XWFCore import XWFUtils
 from Products.XWFCore.odict import ODict
 from gs.profile.base import ProfilePage
 from gs.profile.email.base.emailuser import EmailUser
-from Products.GSProfile.interfaces import *
+from Products.GSProfile.interfaces import *  # Sad, but true  # lint:ok
 from .utils import groupInfoSorter
 
 import logging
-log = logging.getLogger('GSProfile')
+log = logging.getLogger('gs.profile.view')
 
 # TODO: The code for displaying profile properties should be moved from
 # the GSProfileView class to a viewlet. The viewlet class would contain
@@ -110,9 +110,9 @@ class GSProfileView(ProfilePage):
         if (hasattr(p, 'vocabulary') and (p.vocabulary is None)):
             # Deal with named vocabularies
             p.vocabulary = getUtility(IVocabularyFactory,
-                p.vocabularyName, self.context)
+                                      p.vocabularyName, self.context)
         r = p.query(self.context, default)
-        if  hasattr(p, 'vocabulary'):
+        if hasattr(p, 'vocabulary'):
             try:
                 retval = p.vocabulary.getTerm(r).title
             except (LookupError, AttributeError):
@@ -140,7 +140,7 @@ class GSProfileView(ProfilePage):
         retval = self.emailUser.get_addresses()
         assert type(retval) == list
         assert retval, 'There are no email addresses for %s (%s)' %\
-          (self.userInfo.name, self.userInfo.id)
+            (self.userInfo.name, self.userInfo.id)
         return retval
 
     def groupMembership(self):
@@ -148,7 +148,8 @@ class GSProfileView(ProfilePage):
         au = self.request.AUTHENTICATED_USER
         authUser = None
         if (au.getId() is not None):
-            authUser = self.context.site_root().acl_users.getUser(au.getId())
+            siteRoot = self.context.site_root()
+            authUser = siteRoot.acl_users.getUser(au.getId())
         groups = self.groupsInfo.get_member_groups_for_user(u, authUser)
         retval = [createObject('groupserver.GroupInfo', g) for g in groups]
         retval.sort(groupInfoSorter)
